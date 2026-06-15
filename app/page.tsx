@@ -70,8 +70,8 @@ function ProductCard({ product }: { product: Product }) {
         )}
       </div>
       <div className="p-3">
-        <p className="text-[#1C1C1A] font-medium text-sm leading-tight">{product.name}</p>
-        <p className="text-[#D97706] font-semibold text-sm mt-1">{product.price} EGP</p>
+        <p className="text-[#1C1C1A] font-large text-sm leading-tight">{product.name}</p>
+        <p className="text-[#D97706] font-semibold text-sm mt-1">{product.price === 0 ? "-" : product.price} EGP</p>
       </div>
     </div>
   );
@@ -85,6 +85,7 @@ export default function MenuPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const categoryRefs = useRef<Record<string, HTMLElement | null>>({});
+  const skipScrollUpdate = useRef(false);
 
   // Fetch data once on mount
   useEffect(() => {
@@ -111,17 +112,20 @@ export default function MenuPage() {
   // Scroll to category section when pill is clicked
   function handleCategoryClick(categoryId: string) {
     setActiveCategory(categoryId);
+    skipScrollUpdate.current = true;
     const el = categoryRefs.current[categoryId];
     if (el) {
       // 110px offset accounts for the sticky header height
       const top = el.getBoundingClientRect().top + window.scrollY - 110;
       window.scrollTo({ top, behavior: "smooth" });
+      setTimeout(() => { skipScrollUpdate.current = false; }, 800);
     }
   }
 
   // Update active pill on scroll
   useEffect(() => {
     function onScroll() {
+      if (skipScrollUpdate.current) return;
       for (const cat of [...categories].reverse()) {
         const el = categoryRefs.current[cat.id];
         if (el && el.getBoundingClientRect().top <= 120) {
