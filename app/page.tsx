@@ -97,10 +97,6 @@ export default function MenuPage() {
       const cats = catSnap.docs.map((d) => ({ id: d.id, ...d.data() } as Category));
       const prods = prodSnap.docs.map((d) => ({ id: d.id, ...d.data() } as Product));
 
-      console.log("cats:", catSnap.docs.length, catSnap.docs.map(d => d.data()));
-      console.log("prods:", prodSnap.docs.length, prodSnap.docs.map(d => d.data()));
-      console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
-
       setCategories(cats);
       setProducts(prods);
 
