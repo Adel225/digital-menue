@@ -71,7 +71,7 @@ function ProductCard({ product }: { product: Product }) {
       </div>
       <div className="p-3">
         <p className="text-[#1C1C1A] font-large text-sm leading-tight">{product.name}</p>
-        <p className="text-[#D97706] font-semibold text-sm mt-1">{product.price === 0 ? "-" : product.price} EGP</p>
+        <p className="text-[#253D32] font-semibold text-sm mt-1">{product.price === 0 ? "-" : product.price} EGP</p>
       </div>
     </div>
   );
@@ -143,15 +143,17 @@ export default function MenuPage() {
     products.filter((p) => p.categoryId === categoryId);
 
   // ── Render ──────────────────────────────────────────────────────────────────
-
+  // white : FAFAF8
+  // brown : 9B6547
+  // green : 253D32
   return (
-    <div className="min-h-screen bg-[#FAFAF8]">
+    <div className="min-h-screen bg-[#FAFAF8]"> 
 
       {/* ── Top Bar ── */}
       <header className="sticky top-0 z-40 bg-[#FAFAF8] border-b border-[#EDECEA]">
-        <div className="flex items-center justify-center h-16 px-4">
+        <div className="flex items-center justify-center h-28 px-4">
           {LOGO_URL ? (
-            <img src={LOGO_URL} alt={BUSINESS_NAME} className="h-10 w-auto object-contain" />
+            <img src={LOGO_URL} alt={BUSINESS_NAME} className="h-24 w-auto object-contain" />
           ) : (
             <span className="text-xl font-bold tracking-tight text-[#1C1C1A]">{BUSINESS_NAME}</span>
           )}
@@ -166,8 +168,8 @@ export default function MenuPage() {
                 onClick={() => handleCategoryClick(cat.id)}
                 className={`flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
                   activeCategory === cat.id
-                    ? "bg-[#D97706] text-white"
-                    : "bg-white text-[#6B6860] border border-[#E5E3DD] hover:border-[#D97706] hover:text-[#D97706]"
+                    ? "bg-[#253D32] text-white"
+                    : "bg-white text-[#6B6860] border border-[#E5E3DD] hover:border-[#253D32] hover:text-[#253D32]"
                 }`}
               >
                 {cat.name}
@@ -207,7 +209,7 @@ export default function MenuPage() {
                   <h2 className="text-base font-bold text-[#1C1C1A] uppercase tracking-wide">
                     {cat.name}
                   </h2>
-                  <div className="mt-1 w-8 h-0.5 bg-[#D97706] rounded-full" />
+                  <div className="mt-1 w-8 h-0.5 bg-[#253D32] rounded-full" />
                 </div>
 
                 {/* Product grid */}
